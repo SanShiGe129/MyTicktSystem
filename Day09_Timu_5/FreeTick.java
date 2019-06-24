@@ -12,8 +12,12 @@ public class FreeTick extends Ticket{
     }
 
     @Override
+    public void selectMoviePrice(String setName) {
+    }
+
+    @Override
     public void printTicket() {
-        super.setPrice(90);
+        super.selectMoviePrice(super.getName());
         this.calTick();
         super.printTicket();
     }

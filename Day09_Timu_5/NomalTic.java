@@ -7,9 +7,8 @@ class NomalTic1 extends Ticket{
     private double price;
     private double zekou = 0;
 
-    public NomalTic1(String type, int roomId, int pai, int zuoWei, String name, double price) {
+    public NomalTic1(String type, int roomId, int pai, int zuoWei, String name) {
         super(type, roomId, pai, zuoWei, name);
-        this.price = price;
     }
 
     @Override
@@ -17,9 +16,15 @@ class NomalTic1 extends Ticket{
         return 0;
     }
 
+
+    @Override
+    public void selectMoviePrice(String setName) {
+
+    }
+
     @Override
     public void printTicket() {
-        setPrice(price);
+        super.selectMoviePrice(super.getName());
         super.setZekou(zekou);
         super.printTicket();
     }
