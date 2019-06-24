@@ -10,8 +10,8 @@ import java.math.BigDecimal;
  * 2.0版
  * 1.添加了原价 折后价等信息
  * 2.子类重复输出信息,代码不够简洁！
- * 3.用BigDecimal解决钱的精度问题算,打折问题不存在精度损失！
- * 4.存在问题 学生票,普通票每次输入票信息是都要输入钱数，增加了出错的几率！
+ * 存在问题
+ * 学生票,普通票每次输入票信息是都要输入钱数，增加了出错的几率！
  * 2019.6.21;
  *
  * 出现的问题1 变量没有考虑好导致重复修改
@@ -26,7 +26,7 @@ public abstract class Ticket {
     private double price;
     private double zekou;
     private String shijian;
-    private BigDecimal cal;
+    private double cal;
 
 
 
@@ -40,13 +40,13 @@ public abstract class Ticket {
 
 
 
-    public BigDecimal getCal() {
+    public double getCal() {
         return cal;
     }
 
     public abstract double calTick();
 
-    public void setCal(BigDecimal cal) {
+    public void setCal(double cal) {
         this.cal = cal;
     }
 
