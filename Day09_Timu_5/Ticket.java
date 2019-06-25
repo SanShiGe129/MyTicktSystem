@@ -2,6 +2,7 @@ package HomeWork.Day09_Timu_5;
 
 
 
+import java.sql.SQLSyntaxErrorException;
 import java.util.Scanner;
 
 
@@ -17,7 +18,7 @@ public abstract class Ticket implements ModifyMovie{  //知识点:如果一个�
     private String shijian;
     private double cal;
     public static TypeMovies []typeMovies = new TypeMovies[10];  //设置静态 保证所有对象访问同一个对象数组
-    private int cnt;   //判断要添加票价格的位置
+    //判断要添加票价格的位置
 
     public Ticket() {
     }
@@ -64,11 +65,9 @@ public abstract class Ticket implements ModifyMovie{  //知识点:如果一个�
         //存下赋值价格
         //不存在输出提示信息
             setArray();
-            if(hasElement(typeMovies,name))  //出现异常的原因是对象数组中没有实例，不能调用getName() 所以还要判断对象是否为空
-            {
-                this.setPrice(typeMovies[cnt].getPrice());  //debug此句好找问题
-                System.out.println("设置价格成功！");
-            }else{
+            if(setMoviePrice(name)) { //出现异常的原因是对象数组中没有实例，不能调用getName() 所以还要判断对象是否为空
+                System.out.println("找到电影了!");
+            }else {
                 System.out.println("你输入的电影名系统中早不到！系统退出！");
                 System.exit(-1);
             }
@@ -88,20 +87,23 @@ public abstract class Ticket implements ModifyMovie{  //知识点:如果一个�
         return;
     }
 
-    //判断元素是否在数组中
-    public boolean hasElement(TypeMovies[] array,String name) {
-        int length = array.length;
+    //判断元素是否在数组中并添加
+    public boolean setMoviePrice(String name) {
+        int length = typeMovies.length;
         for (int i = 0; i < length; i++) {
-            if(array[i] == null){  //如果是最后一个元素！说明不存在这个元素
+
+            TypeMovies Omovie = typeMovies[i];
+            if(Omovie == null){  //如果是最后一个元素！说明不存在这个元素
                    return false;                //这里写的是flag =  true;出现错
 
             }
-            if (array[i].getName().equals(name)) {   //如果名字相同，返回true
+            if (Omovie.getName().equals(name)) {   //如果名字相同，返回true
+                setPrice(Omovie.getPrice());
                 return true;                  //开始写的是定义flag = true 出现错误
             }
         }
 
-        return false;     //如果类型为空,且名字不相同！
+        return false;     //如果类型不为空,且名字不相同 返回false！
     }
 
     @Override

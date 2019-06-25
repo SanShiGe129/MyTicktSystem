@@ -25,6 +25,10 @@ import demo1.Student;
  *   出现的坑 在判断有固定长度对象数组里，是否存在对象中的某一个元素！最后一个元素为空的问题
  *   发现问题子类用父类的方法实现直接修改父类而不用修改子类
  *   出现的问题 非静态数组不能数据共享 可以用静态解决这个问题！
+ *
+ *   键入票类型功能的时候太累缀
+ *   把插入删除的代码放入父类不合适！(就这样吧懒得改了！)
+ *
  *   完成时间2019年6月24日00:53:43
  *
  *
@@ -56,13 +60,13 @@ public class Test {
         ticket.addMovie();
         //ticket.showMovie();
 
-        //单个方法测试通过  ok  测试输入元素是否在数组中
+        //单个方法测试通过  ok  测试输入元素是否在数组中  ok
         //StudentTick studentTick = new StudentTick("学生票",3,2,23,"bbb");
         //studentTick.selectMoviePrice(studentTick.getName());
         //studentTick.printTicket();
-
-
         //组合测试  ok
+
+
         String s1 = "房间号(输入数字按回车键结束！):";
         String s2 = "请输入排号(输入数字按回车键结束！):";
         String s3 = "请输入座位号(输入数字按回车键结束！):";
@@ -79,7 +83,6 @@ public class Test {
         } else if (TypeTicket.equals("学生票")) {
             ticket.setArray();
             ticket.showMovie();
-            System.out.println("");
             System.out.println(s1);
             int RoomId = scanner.nextInt();
             System.out.println(s2);
