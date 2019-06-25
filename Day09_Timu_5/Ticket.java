@@ -2,11 +2,13 @@ package HomeWork.Day09_Timu_5;
 
 
 
+import YiChang.TestYiChang;
+
 import java.sql.SQLSyntaxErrorException;
 import java.util.Scanner;
 
 
-public abstract class Ticket implements ModifyMovie{  //知识点:如果一个方法实现了一个接口的部分方法,
+public abstract class Ticket {  //知识点:如果一个方法实现了一个接口的部分方法,
                                                       // 则该类必须为抽象方法
     private String type;
     private int roomId;
@@ -17,7 +19,7 @@ public abstract class Ticket implements ModifyMovie{  //知识点:如果一个�
     private double zekou;
     private String shijian;
     private double cal;
-    public static TypeMovies []typeMovies = new TypeMovies[10];  //设置静态 保证所有对象访问同一个对象数组
+
     //判断要添加票价格的位置
 
     public Ticket() {
@@ -32,69 +34,13 @@ public abstract class Ticket implements ModifyMovie{  //知识点:如果一个�
     }
 
 
-    @Override
-    public  void addMovie() {  //实现增加票的功能,用静态方法保证添加同一个数组
-        Scanner sc = new Scanner(System.in);
-        for (int i =0;i<=10;i++) {  //
-            System.out.println("请输入输入添加的电影名:");
-            String setName = sc.next();
-            System.out.println("请输入电影的金额:");
-            double setPrice = sc.nextInt();
-
-
-            System.out.println("确定添加吗？确定输入'YES',否则输入其他字符回车放弃添加！");
-            String sure = sc.next();
-            if (sure.equalsIgnoreCase("YES")) {
-                typeMovies[i] = new TypeMovies(setName, setPrice);
-            } else {
-                System.out.println("你已放弃添加！");
-                i--;
-            }
-            System.out.println("继续添加吗！如果继续输入任意字符回车！否则输入exit退出系统!");
-            String isExit = sc.next();
-            if (isExit.equalsIgnoreCase("exit")){
-                break;
-            }
-        }
-    }
-
-    public  void selectMoviePrice(String name)   //通过电影名选择设置的票价
-    {
-        //判断数组是有为空引用
-        //输入的电影名是否存在
-        //存下赋值价格
-        //不存在输出提示信息
-            setArray();
-            if(setMoviePrice(name)) { //出现异常的原因是对象数组中没有实例，不能调用getName() 所以还要判断对象是否为空
-                System.out.println("找到电影了!");
-            }else {
-                System.out.println("你输入的电影名系统中早不到！系统退出！");
-                System.exit(-1);
-            }
-
-    }
-
-
-    //用递归实现强制初始化变量
-    public void setArray(){
-
-        if(typeMovies[0] == null){
-            System.out.println("你还未成功添加任何电影请添加！");
-            addMovie();
-            setArray();
-        }
-
-        return;
-    }
-
-    //判断元素是否在数组中并添加
-    public boolean setMoviePrice(String name) {
-        int length = typeMovies.length;
+    public  boolean setMoviePrice(String name) {
+        int length = TypeMovies.typeMovies.length;
         for (int i = 0; i < length; i++) {
 
-            TypeMovies Omovie = typeMovies[i];
+            TypeMovies Omovie = TypeMovies.typeMovies[i];
             if(Omovie == null){  //如果是最后一个元素！说明不存在这个元素
-                   return false;                //这里写的是flag =  true;出现错
+                return false;                //这里写的是flag =  true;出现错
 
             }
             if (Omovie.getName().equals(name)) {   //如果名字相同，返回true
@@ -106,25 +52,27 @@ public abstract class Ticket implements ModifyMovie{  //知识点:如果一个�
         return false;     //如果类型不为空,且名字不相同 返回false！
     }
 
-    @Override
-    public void deMovie() {     //实现删除票的功能(暂时不开发)
-
-    }
-
-    @Override
-    public void showMovie() {    //实现展示查看电影类型和价格的功能！
-        System.out.println("");
-        for(int i=0;i<typeMovies.length;i++){
-            if(typeMovies[i] == null){
-                System.out.println("共"+ i +"个电影！");
-                break;
-            }else{
-                System.out.println(typeMovies[i]);
+    public void selectMoviePrice(String name)   //通过电影名选择设置的票价
+    {
+        //判断数组是有为空引用
+        //输入的电影名是否存在
+        //存下赋值价格
+        //不存在输出提示信息
+            TypeMovies.setArray();
+            if(setMoviePrice(name)) { //出现异常的原因是对象数组中没有实例，不能调用getName() 所以还要判断对象是否为空
+                System.out.println("找到电影了!");
+            }else {
+                System.out.println("你输入的电影名系统中早不到！系统退出！");
+                System.exit(-1);
             }
-        }
-        System.out.println("");
 
     }
+
+
+    //用递归实现强制初始化变量
+
+    //判断元素是否在数组中并添加
+
 
     public double getCal() {
         return cal;
