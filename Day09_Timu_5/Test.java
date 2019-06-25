@@ -6,7 +6,7 @@ public class Test {
     private static Scanner input  = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        System.out.println("****** 欢迎光临，磊磊版4代售票系统,增加菜单功能！ *****^_^");
         zhuCaiDan();
 
 
@@ -31,7 +31,6 @@ public class Test {
         else{
             System.out.println("你输入序号错误!,或功能未开发！");
         }
-
     }
 
     public static void ziCaiDan1(){
@@ -82,7 +81,7 @@ public class Test {
         } else if (typeTicket.equals("赠票")) {
             gongNeng(new FreeTick(typeTicket, RoomId, Pai, ZuoWei, movieName));
         } else {
-            System.out.println("你输入的参数不合法！退出程序！");
+            System.out.println("你输入票的种类不合法！退出程序！");
             System.exit(-1);
         }
 
